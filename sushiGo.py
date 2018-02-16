@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
 
 # 108 cards in a standard deck
-# 14x Tempura
-# 14x Dumpling
-# 12x 2 Maki rolls
-# 8x  3 Maki rolls
-# 6 x 1 Maki rolls
-# 10x Salmon Nigiri
-# 5x  Squid Nigiri
-# 5x  Egg Nigiri
-# 10x Pudding
-# 6x  Wasabi
-# 4x  Chopsticks
 
 
 class Game:
     def __init__(self, player, rounds):
         self.players = players
         self.rounds = rounds
+    
+    deck = {
+        'tempura': 14,
+        'dumpling': 14,
+        'maki3': 8,
+        'maki2': 12,
+        'maki1': 6,
+        'sal_nigiri': 10,
+        'squ_nigiri': 5,
+        'egg_nigiri': 5,
+        'pudding': 10,
+        'wasabi': 6,
+        'chopsticks': 4
+    }
+
 
     # TODO
     # deal hands to players
