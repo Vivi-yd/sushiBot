@@ -5,7 +5,9 @@
 from numpy.random import choice
 
 class Game:
-
+    
+    players = 0
+    rounds = 0
     #TODO refactor the instances variable.
     deck = {
         'tempura': 14,
@@ -63,18 +65,24 @@ class Game:
         'chopsticks': 0
     }
     
-    def __init__(self, player, rounds):
+    def __init__(self, players, rounds):
         self.players = players
         self.rounds = rounds
-        self.hand1 = self.draw_card(player)
-        self.hand2 = self.draw_card(player)
-        self.hand3 = self.draw_card(player)
+        self.hand1 = self.draw_card(players)
+        self.hand2 = self.draw_card(players)
+        self.hand3 = self.draw_card(players)
     
-    def draw_card(player):
+    def __str__(self):
+    
+        format_str = 'DECK: {0}\nH1: {1}\nH2: {2}\nH3: {3}'
+        return format_str.format(self.deck, self.hand1, self.hand2, self.hand3)
+
         
-        card_num = 12 - player  #Just a arbitary rule
+    def draw_card(self, players):
+        
+        card_num = 12 - players  #Just a arbitary rule
         card_list = []
-        deck_list = self.expand(self.deck)
+        deck_list = self.expand_dict(self.deck)
 
         hand = {
             'tempura': 0,
@@ -94,13 +102,14 @@ class Game:
         
         for card in card_list:
             hand[card] += 1
+            self.deck[card] -= 1
 
         return hand
 
         
     def expand_dict(self, deck):
         expanded = []
-        for card, count in deck:
+        for card, count in deck.items():
             expanded.extend([card]*count)
 
         return expanded
